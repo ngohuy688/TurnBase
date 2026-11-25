@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebd89b4e554fd98a6e17c355a01d01, type: 3}
+  m_Name: Event 9 - Alchemist Laboratory
+  m_EditorClassIdentifier: 
+  eventTitle: Alchemist Laboratory
+  description: A cluttered workshop filled with bubbling alembics and arcane manuals.
+    A large cauldron still glows with a vivid emerald light.
+  choices:
+  - title: '[Drink Concoction] Taste the rejuvenation tonic'
+    description: Heal 20 HP for all allies.
+    effects:
+    - effectType: 1
+      amount: 20
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Transmute Gold] Attempt alchemical transmutation'
+    description: Toxic fumes cause 7 Damage, successfully synthesize 45 Gold.
+    effects:
+    - effectType: 2
+      amount: 7
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    - effectType: 0
+      amount: 45
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Leave] Stay clear of volatile chemicals'
+    description: Exit the laboratory.
+    effects: []
+    nextEventData: {fileID: 0}

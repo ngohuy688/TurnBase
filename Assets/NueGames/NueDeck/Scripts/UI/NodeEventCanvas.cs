@@ -22,19 +22,33 @@ namespace NueGames.NueDeck.Scripts.UI
 
         public void OpenEvent(EventData eventData, Action onResolved)
         {
-            if (!eventData || eventData.Choices == null || eventData.Choices.Count == 0 ||
+            if (!HasValidEventData(eventData) ||
                 !eventPanel || !titleText || !descriptionText || !choicesRoot || !choiceButtonPrefab)
             {
                 Debug.LogError("NodeEventCanvas is missing event data or required UI references.", this);
                 return;
             }
 
-            ClearChoices();
             _resolved = false;
             _onResolved = onResolved;
+            if (!DisplayEvent(eventData))
+            {
+                _onResolved = null;
+                return;
+            }
+
+            eventPanel.SetActive(true);
+            OpenCanvas();
+        }
+
+        private bool DisplayEvent(EventData eventData)
+        {
+            if (!HasValidEventData(eventData))
+                return false;
+
+            ClearChoices();
             titleText.text = eventData.EventTitle;
             descriptionText.text = eventData.Description;
-
             foreach (var choice in eventData.Choices)
             {
                 if (choice == null) continue;
@@ -57,11 +71,16 @@ namespace NueGames.NueDeck.Scripts.UI
             if (_choiceButtons.Count == 0)
             {
                 Debug.LogError("Event has no valid choices.", eventData);
-                return;
+                return false;
             }
 
-            eventPanel.SetActive(true);
-            OpenCanvas();
+            return true;
+        }
+
+        private static bool HasValidEventData(EventData eventData)
+        {
+            return eventData && eventData.Choices != null &&
+                   eventData.Choices.Exists(choice => choice != null);
         }
 
         public override void ResetCanvas()
@@ -74,22 +93,36 @@ namespace NueGames.NueDeck.Scripts.UI
 
         private void SelectChoice(EventChoiceData choice)
         {
-            if (_resolved || choice == null || choice.Effects == null)
+            if (_resolved || choice == null)
                 return;
 
-            foreach (var button in _choiceButtons)
-                if (button) button.interactable = false;
+            SetChoicesInteractable(false);
 
-            foreach (var effect in choice.Effects)
+            if (choice.Effects != null)
             {
-                if (!NodeRewardService.Apply(effect))
-                    Debug.LogWarning($"Could not apply event reward '{effect?.EffectType}'.", this);
+                foreach (var effect in choice.Effects)
+                {
+                    if (!NodeRewardService.Apply(effect))
+                        Debug.LogWarning($"Could not apply event reward '{effect?.EffectType}'.", this);
+                }
+            }
+
+            if (choice.NextEventData)
+            {
+                if (!HasValidEventData(choice.NextEventData))
+                {
+                    Debug.LogError($"Event choice '{choice.Title}' references an event with no valid choices.", choice.NextEventData);
+                    SetChoicesInteractable(true);
+                    return;
+                }
+
+                DisplayEvent(choice.NextEventData);
+                return;
             }
 
             if (!GameManager || !GameManager.CompleteCurrentMapNode())
             {
-                foreach (var button in _choiceButtons)
-                    if (button) button.interactable = true;
+                SetChoicesInteractable(true);
                 return;
             }
 
@@ -98,6 +131,12 @@ namespace NueGames.NueDeck.Scripts.UI
             _onResolved = null;
             CloseCanvas();
             callback?.Invoke();
+        }
+
+        private void SetChoicesInteractable(bool interactable)
+        {
+            foreach (var button in _choiceButtons)
+                if (button) button.interactable = interactable;
         }
 
         private void ClearChoices()

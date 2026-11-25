@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebd89b4e554fd98a6e17c355a01d01, type: 3}
+  m_Name: Event 6 - Fairy Fountain
+  m_EditorClassIdentifier: 
+  eventTitle: Fairy Fountain
+  description: You find a crystal-clear spring surrounded by dancing wisps of light.
+    Pure life essence radiates from the tranquil pool.
+  choices:
+  - title: '[Bathe] Cleanse body and spirit'
+    description: Heal 22 HP for all allies.
+    effects:
+    - effectType: 1
+      amount: 22
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Scoop Coins] Fish wishing coins from the spring'
+    description: Collect 35 Gold left behind by past travelers.
+    effects:
+    - effectType: 0
+      amount: 35
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Bottle Water] Fill a flask for the road'
+    description: Heal 10 HP and head out.
+    effects:
+    - effectType: 1
+      amount: 10
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}

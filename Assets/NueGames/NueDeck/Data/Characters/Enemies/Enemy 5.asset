@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2612027158f847538279f7d8f10dff91, type: 3}
+  m_Name: Enemy 5
+  m_EditorClassIdentifier: 
+  characterID: enemy_5
+  characterName: Enemy 5
+  characterDescription: Enemy Description
+  maxHealth: 55
+  enemyPrefab: {fileID: 6003445405145122851, guid: cf597885dbfc29e40885af183094c79a, type: 3}
+  followAbilityPattern: 1
+  enemyAbilityList:
+  - name: Block
+    intention: {fileID: 11400000, guid: b0b1e7f2f78bb444eb1666e4accf22ee, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 3
+      minActionValue: 10
+      maxActionValue: 14
+  - name: Poison
+    intention: {fileID: 11400000, guid: e7deaaa3f01f8f54ab8c29a0ce3c8f31, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 2
+      minActionValue: 3
+      maxActionValue: 4
+  - name: Attack Single
+    intention: {fileID: 11400000, guid: 2af475f5121b73d4c99b67551230aa48, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      minActionValue: 6
+      maxActionValue: 8
+  - name: Block
+    intention: {fileID: 11400000, guid: b0b1e7f2f78bb444eb1666e4accf22ee, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 3
+      minActionValue: 12
+      maxActionValue: 16
+  - name: Poison
+    intention: {fileID: 11400000, guid: e7deaaa3f01f8f54ab8c29a0ce3c8f31, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 2
+      minActionValue: 4
+      maxActionValue: 5
+  - name: Attack Single
+    intention: {fileID: 11400000, guid: 2af475f5121b73d4c99b67551230aa48, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      minActionValue: 8
+      maxActionValue: 10

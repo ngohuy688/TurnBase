@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using NueGames.NueDeck.Scripts.Enums;
@@ -164,31 +164,32 @@ namespace NueGames.NueDeck.Scripts.Data.Collection
             
             var str = new StringBuilder();
             var value = cardData.CardActionDataList[ModifiedActionValueIndex].ActionValue;
-            var modifer = 0;
+            var modifiedValue = value;
+            var isModified = false;
             if (CombatManager)
             {
                 var player = CombatManager.CurrentMainAlly;
                
                 if (player)
                 {
-                    modifer = GetTotalModiferValue(player.CharacterStats);
-                    value += modifer;
-
-                    if (modifer != 0)
-                    {
-                        if (usePrefixOnModifiedValue)
-                            str.Append(modifiedValuePrefix);
-                    }
+                    modifiedValue = GetModifiedActionValue(
+                        cardData.CardActionDataList[ModifiedActionValueIndex],
+                        player.CharacterStats,
+                        value);
+                    isModified = !Mathf.Approximately(value, modifiedValue);
                 }
             }
+
+            if (isModified && usePrefixOnModifiedValue)
+                str.Append(modifiedValuePrefix);
            
-            str.Append(value);
+            str.Append(modifiedValue);
 
             if (EnableOverrideColor)
             {
                 if (OverrideColorOnValueScaled)
                 {
-                    if (modifer != 0)
+                    if (isModified)
                         str.Replace(str.ToString(),ColorExtentions.ColorString(str.ToString(),OverrideColor));
                 }
                 else
@@ -201,9 +202,13 @@ namespace NueGames.NueDeck.Scripts.Data.Collection
             return str.ToString();
         }
 
-        private int GetTotalModiferValue(NueGames.NueDeck.Scripts.Characters.CharacterStats characterStats)
+        private float GetModifiedActionValue(
+            CardActionData actionData,
+            NueGames.NueDeck.Scripts.Characters.CharacterStats characterStats,
+            float baseValue)
         {
-            var totalModifer = 0;
+            var flatModifier = 0f;
+            var percentModifier = 0f;
 
             foreach (StatusType statusType in Enum.GetValues(typeof(StatusType)))
             {
@@ -211,10 +216,43 @@ namespace NueGames.NueDeck.Scripts.Data.Collection
                 if ((modiferStats & statusType) != statusType) continue;
                 if (!characterStats.StatusDict.TryGetValue(statusType, out var statusStats)) continue;
 
-                totalModifer += statusStats.StatusValue;
+                switch (statusType)
+                {
+                    case StatusType.Strength:
+                        flatModifier += statusStats.StatusValue;
+                        break;
+                    case StatusType.StrengthDown:
+                        if (statusStats.IsActive)
+                            flatModifier -= Mathf.Abs(statusStats.StatusValue);
+                        break;
+                    case StatusType.Weak:
+                        flatModifier -= statusStats.StatusValue;
+                        break;
+                    case StatusType.Dexterity when actionData.CardActionType == CardActionType.Block:
+                        if (statusStats.StatusValue > 0)
+                            percentModifier += 50f;
+                        break;
+                    case StatusType.DamageUp:
+                        if (statusStats.StatusValue > 0)
+                            percentModifier += 50f;
+                        break;
+                    case StatusType.DamageDown:
+                        if (statusStats.StatusValue > 0)
+                            percentModifier -= 50f;
+                        break;
+                    default:
+                        flatModifier += statusStats.StatusValue;
+                        break;
+                }
             }
 
-            return totalModifer;
+            var modifiedValue = (baseValue + flatModifier) * (100f + percentModifier) / 100f;
+            if (actionData.CardActionType == CardActionType.Attack ||
+                actionData.CardActionType == CardActionType.LifeSteal ||
+                actionData.CardActionType == CardActionType.Block)
+                modifiedValue = Mathf.Max(0, Mathf.RoundToInt(modifiedValue));
+
+            return modifiedValue;
         }
 
         #region Editor
@@ -246,11 +284,15 @@ namespace NueGames.NueDeck.Scripts.Data.Collection
                 var player = CombatManager.CurrentMainAlly;
                 if (player)
                 {
-                    var modifer = GetTotalModiferValue(player.CharacterStats);
-                    value += modifer;
+                    var modifiedValue = GetModifiedActionValue(
+                        cardData.CardActionDataList[ModifiedActionValueIndex],
+                        player.CharacterStats,
+                        value);
                 
-                    if (modifer!= 0)
+                    if (!Mathf.Approximately(value, modifiedValue))
                         str.Append("*");
+
+                    value = modifiedValue;
                 }
             }
            

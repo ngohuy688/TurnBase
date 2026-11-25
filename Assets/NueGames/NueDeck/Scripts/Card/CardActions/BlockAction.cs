@@ -17,8 +17,7 @@ namespace NueGames.NueDeck.Scripts.Card.CardActions
             
             if (!newTarget) return;
             
-            var blockValue = actionParameters.Value + actionParameters.SelfCharacter.CharacterStats
-                .StatusDict[StatusType.Dexterity].StatusValue;
+            var blockValue = actionParameters.SelfCharacter.CharacterStats.ModifyBlockValue(actionParameters.Value);
             newTarget.CharacterStats.ApplyStatus(StatusType.Block, Mathf.RoundToInt(blockValue));
             if (newTarget is AllyBase)
                 RelicEffectProcessor.Trigger(RelicCondition.OnBlockGained,

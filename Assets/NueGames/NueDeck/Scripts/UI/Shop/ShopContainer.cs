@@ -28,6 +28,7 @@ namespace NueGames.NueDeck.Scripts.UI.Shop
             _rewardContainer = rewardContainer;
             _purchase = purchase;
             GoldCost = goldCost;
+            _rewardContainer.SetShopOfferLayout();
             _rewardContainer.BuildReward(sprite, $"{description}\nCost: {goldCost} gold");
             _rewardContainer.RewardButton.onClick.AddListener(OnPurchaseClicked);
         }

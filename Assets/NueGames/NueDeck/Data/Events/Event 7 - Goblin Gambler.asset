@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebd89b4e554fd98a6e17c355a01d01, type: 3}
+  m_Name: Event 7 - Goblin Gambler
+  m_EditorClassIdentifier: 
+  eventTitle: Goblin Gambler
+  description: A scrawny goblin perches atop a wooden crate, eagerly rattling a pair
+    of dice. 'Bet your blood for gold, or bet your gold for glory! Feeling lucky, champion?'
+  choices:
+  - title: '[High Stakes] A high-risk deathroll'
+    description: Take 12 Damage, win 70 Gold.
+    effects:
+    - effectType: 2
+      amount: 12
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    - effectType: 0
+      amount: 70
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Low Stakes] Play it safe'
+    description: Take 4 Damage, win 30 Gold.
+    effects:
+    - effectType: 2
+      amount: 4
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    - effectType: 0
+      amount: 30
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Kick Table] Refuse to play rigged games'
+    description: Walk away.
+    effects: []
+    nextEventData: {fileID: 0}

@@ -16,3 +16,15 @@ MonoBehaviour:
   rewardDescription: Choose a relic
   relicData:
   - {fileID: 11400000, guid: 4fe6217aaec442ec8931d38ee2c1f091, type: 2}
+  - {fileID: 11400000, guid: fd35a9135fff7af4da540d9be4c1896b, type: 2}
+  - {fileID: 11400000, guid: ac85a60b51951b241b8b5d37121e859c, type: 2}
+  - {fileID: 11400000, guid: 96105e3d9872d82498dfaa0f83f80ed5, type: 2}
+  - {fileID: 11400000, guid: 5fa32042bd6d0a24ba190d5eb1929617, type: 2}
+  - {fileID: 11400000, guid: b82ebb31bbcff874db26cf1e935bcd4f, type: 2}
+  - {fileID: 11400000, guid: f6594d938839d184d9a81e2248a23611, type: 2}
+  - {fileID: 11400000, guid: ff2dca9d525b1a148a7ee405734a70ca, type: 2}
+  - {fileID: 11400000, guid: 0e759fe5471fe1f4fadedf42befbf877, type: 2}
+  - {fileID: 11400000, guid: 6fbe8fcec2345b3479d25167701e43d2, type: 2}
+  - {fileID: 11400000, guid: af61d7e37c8eb8f46b30dd39ff40bcb1, type: 2}
+  - {fileID: 11400000, guid: 54949b57c537951429cda9a8950f3a39, type: 2}
+  - {fileID: 11400000, guid: 80643f2152e00b449a1cf86a8bf427d7, type: 2}

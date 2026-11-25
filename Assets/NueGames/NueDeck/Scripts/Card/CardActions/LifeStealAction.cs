@@ -15,6 +15,7 @@ namespace NueGames.NueDeck.Scripts.Card.CardActions
             if (!actionParameters.TargetCharacter) return;
 
             var value = Mathf.Max(0, actionParameters.Value + actionParameters.SelfCharacter.CharacterStats.StrengthModifier);
+            value = actionParameters.SelfCharacter.CharacterStats.ModifyOutgoingDamage(value);
             if (actionParameters.SelfCharacter is AllyBase)
             {
                 var damageParameters = new RelicEffectParameters
@@ -24,21 +25,25 @@ namespace NueGames.NueDeck.Scripts.Card.CardActions
                     TargetCharacter = actionParameters.TargetCharacter,
                     CardData = actionParameters.CardData
                 };
+                CombatManager.Instance?.TriggerFirstDamageDealt(damageParameters);
                 RelicEffectProcessor.Trigger(RelicCondition.OnDamageDealt, damageParameters);
                 value = damageParameters.Value;
             }
 
             var roundedValue = Mathf.RoundToInt(value);
-            actionParameters.TargetCharacter.CharacterStats.Damage(roundedValue);
+            actionParameters.TargetCharacter.CharacterStats.Damage(roundedValue, false, actionParameters.SelfCharacter);
             if (actionParameters.TargetCharacter is AllyBase)
-                RelicEffectProcessor.Trigger(RelicCondition.OnDamageTaken,
-                    new RelicEffectParameters
-                    {
-                        Value = value,
-                        SourceCharacter = actionParameters.SelfCharacter,
-                        TargetCharacter = actionParameters.TargetCharacter,
-                        CardData = actionParameters.CardData
-                    });
+            {
+                var damageParameters = new RelicEffectParameters
+                {
+                    Value = value,
+                    SourceCharacter = actionParameters.SelfCharacter,
+                    TargetCharacter = actionParameters.TargetCharacter,
+                    CardData = actionParameters.CardData
+                };
+                CombatManager.Instance?.TriggerFirstDamageTaken(damageParameters);
+                RelicEffectProcessor.Trigger(RelicCondition.OnDamageTaken, damageParameters);
+            }
 
             var previousHealth = actionParameters.SelfCharacter.CharacterStats.CurrentHealth;
             actionParameters.SelfCharacter.CharacterStats.Heal(roundedValue);

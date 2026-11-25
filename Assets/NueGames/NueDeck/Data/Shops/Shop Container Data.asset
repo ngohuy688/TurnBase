@@ -18,8 +18,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23863b4e14e243b4af6974c6a9a7f029, type: 2}
   - {fileID: 11400000, guid: 23863b4e14e243b4af6974c6a9a7f029, type: 2}
   relicShopDataList:
-  - {fileID: 11400000, guid: 478c1e3ac19940dd8f46a63e6d5f9022, type: 2}
   - {fileID: 11400000, guid: 9a6ed0b9dee5d334f9bf90919f7d80bb, type: 2}
+  - {fileID: 11400000, guid: c64ff2b42bd196b4792b1bcb8ab4a483, type: 2}
+  - {fileID: 11400000, guid: dbe436b298765f34f8636b865f5be949, type: 2}
+  - {fileID: 11400000, guid: 0b3cf05a00c7ec04fb930aeacd6230e8, type: 2}
+  - {fileID: 11400000, guid: 44048fd3b53d7cf4a8ab49faf56eb590, type: 2}
+  - {fileID: 11400000, guid: c4b8bb84598fe684683639228f81f03a, type: 2}
+  - {fileID: 11400000, guid: 5a2ebf794f1bc5046bc63fba46003b55, type: 2}
+  - {fileID: 11400000, guid: f110ceb615d668645a6673034f7051db, type: 2}
+  - {fileID: 11400000, guid: 345f7cae91e7f26499110dfdd9ed8da8, type: 2}
+  - {fileID: 11400000, guid: 635bed6c0de00894b9ac83342c1916e8, type: 2}
+  - {fileID: 11400000, guid: 5e6f6e64f6afe2e4da14e6546cb80f01, type: 2}
+  - {fileID: 11400000, guid: 0394b6f9a1a7cc340b842d688baafd7b, type: 2}
+  - {fileID: 11400000, guid: 4237b6780776cc14687bb32fe1ed5040, type: 2}
+  - {fileID: 11400000, guid: 4b6fac013f4d40c45966cdea8b2c43a7, type: 2}
+  - {fileID: 11400000, guid: 020b18a34ad948641b19f23ea6826512, type: 2}
+  - {fileID: 11400000, guid: f78c2bd497908a7498f05b0875dc0f03, type: 2}
+  - {fileID: 11400000, guid: fbb8216f0ecbc3a45895ef6690e63e01, type: 2}
+  - {fileID: 11400000, guid: 5f06f08de681b464aa4ce33e700a26ef, type: 2}
+  - {fileID: 11400000, guid: 4f6075a667b366a44abb25e9a471db5e, type: 2}
+  - {fileID: 11400000, guid: 25f737d6ee7f4a64a8cbedfa94f9e203, type: 2}
+  - {fileID: 11400000, guid: 0e53442f022681f47a9b638a8d51fa88, type: 2}
   RefreshCost: 10
   ShopCardSlotCount: 3
   ShopRelicSlotCount: 3

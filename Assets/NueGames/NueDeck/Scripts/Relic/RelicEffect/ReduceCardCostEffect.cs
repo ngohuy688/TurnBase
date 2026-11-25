@@ -1,4 +1,5 @@
 using NueGames.NueDeck.Scripts.Enums;
+using NueGames.NueDeck.Scripts.Card.CardActions;
 
 namespace NueGames.NueDeck.Scripts.Relic.RelicEffect
 {
@@ -6,16 +7,16 @@ namespace NueGames.NueDeck.Scripts.Relic.RelicEffect
     {
         public override RelicEffectType EffectType => RelicEffectType.ReduceCardCost;
 
-        public static int NextCardCostReduction { get; private set; }
+        public static int NextCardCostReduction => ReduceNextCardCostAction.NextCardCostReduction;
 
         public override void ApplyEffect(RelicEffectParameters parameters)
         {
-            NextCardCostReduction = EffectValue(parameters);
+            ReduceNextCardCostAction.SetReduction(EffectValue(parameters));
         }
 
         public static void ConsumeReduction()
         {
-            NextCardCostReduction = 0;
+            ReduceNextCardCostAction.ConsumeReduction();
         }
     }
 }

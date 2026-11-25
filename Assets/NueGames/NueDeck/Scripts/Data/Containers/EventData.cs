@@ -33,10 +33,12 @@ namespace NueGames.NueDeck.Scripts.Data.Containers
         [SerializeField] private string title;
         [TextArea] [SerializeField] private string description;
         [SerializeField] private List<NodeRewardEffect> effects;
+        [SerializeField] private EventData nextEventData;
 
         public string Title => title;
         public string Description => description;
         public List<NodeRewardEffect> Effects => effects;
+        public EventData NextEventData => nextEventData;
     }
 
     [CreateAssetMenu(fileName = "Node Event", menuName = "NueDeck/Map/Node Event", order = 5)]

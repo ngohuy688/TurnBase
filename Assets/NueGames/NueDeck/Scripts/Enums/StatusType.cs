@@ -11,6 +11,9 @@ namespace NueGames.NueDeck.Scripts.Enums
         Stun = 1 << 4,
         Weak = 1 << 5,
         Vulnerable = 1 << 6,
-        StrengthDown = 1 << 7
+        StrengthDown = 1 << 7,
+        DamageUp = 1 << 8,
+        DamageDown = 1 << 9,
+        Thorns = 1 << 10
     }
 }

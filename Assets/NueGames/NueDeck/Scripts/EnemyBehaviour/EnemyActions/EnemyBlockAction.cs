@@ -17,9 +17,8 @@ namespace NueGames.NueDeck.Scripts.EnemyBehaviour.EnemyActions
             
             if (!newTarget) return;
             
-            newTarget.CharacterStats.ApplyStatus(StatusType.Block,
-                Mathf.RoundToInt(actionParameters.Value + actionParameters.SelfCharacter.CharacterStats
-                    .StatusDict[StatusType.Dexterity].StatusValue));
+            var blockValue = actionParameters.SelfCharacter.CharacterStats.ModifyBlockValue(actionParameters.Value);
+            newTarget.CharacterStats.ApplyStatus(StatusType.Block, Mathf.RoundToInt(blockValue));
             
             if (FxManager != null)
                 FxManager.PlayFx(newTarget.transform,FxType.Block);

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebd89b4e554fd98a6e17c355a01d01, type: 3}
+  m_Name: Event 5 - Strange Camp
+  m_EditorClassIdentifier: 
+  eventTitle: Strange Camp
+  description: A crackling campfire burns brightly in a quiet clearing with no one
+    in sight. A hearty pot of stew bubbles gently over glowing embers.
+  choices:
+  - title: '[Inspect Tent] Approach the large pavilion nearby'
+    description: See who resides within the camp.
+    effects: []
+    nextEventData: {fileID: 11400000, guid: e000000000000000000000000000005b, type: 2}
+  - title: '[Eat Stew] Enjoy a warm bowl and rest'
+    description: Heal 18 HP for all allies.
+    effects:
+    - effectType: 1
+      amount: 18
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Extinguish & Move] Avoid potential ambush'
+    description: Leave quietly without lingering.
+    effects: []
+    nextEventData: {fileID: 0}

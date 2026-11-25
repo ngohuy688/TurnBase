@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 9_attack_lifeSteal
   cardName: Life Steal
   manaCost: 2
-  cardSprite: {fileID: 21300000, guid: 04684b85c9246b945a48b41d9ec2f4be, type: 3}
+  cardSprite: {fileID: -849488321, guid: 882aa6fe10621a04bb4b2a92ab6ee961, type: 3}
   rarity: 0
   usableWithoutTarget: 0
   exhaustAfterPlay: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     overrideColor: {r: 0.7686275, g: 0.14117648, b: 0.18823531, a: 1}
     useModifier: 1
     modifiedActionValueIndex: 0
-    modiferStats: 8
+    modiferStats: 900
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: '*'
     overrideColorOnValueScaled: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
     overrideColor: {r: 0.3529412, g: 0.7725491, b: 0.30980393, a: 1}
     useModifier: 1
     modifiedActionValueIndex: 0
-    modiferStats: 8
+    modiferStats: 0
     usePrefixOnModifiedValue: 1
     modifiedValuePrefix: '*'
     overrideColorOnValueScaled: 1

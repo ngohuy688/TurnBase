@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NueGames.NueDeck.Scripts.Characters;
+using NueGames.NueDeck.Scripts.Card.CardActions;
 using NueGames.NueDeck.Scripts.Characters.Enemies;
 using NueGames.NueDeck.Scripts.Data.Containers;
 using NueGames.NueDeck.Scripts.Enums;
@@ -48,6 +49,9 @@ namespace NueGames.NueDeck.Scripts.Managers
         }
         
         private CombatStateType _currentCombatStateType;
+        private bool _hasPlayedFirstCardThisTurn;
+        private bool _hasDealtDamageThisTurn;
+        private bool _hasTakenDamageThisTurn;
         protected FxManager FxManager => FxManager.Instance;
         protected AudioManager AudioManager => AudioManager.Instance;
         protected GameManager GameManager => GameManager.Instance;
@@ -80,6 +84,7 @@ namespace NueGames.NueDeck.Scripts.Managers
 
         public void StartCombat()
         {
+            ReduceNextCardCostAction.Reset();
             if (!BuildEnemies())
             {
                 CurrentCombatStateType = CombatStateType.EndCombat;
@@ -100,6 +105,35 @@ namespace NueGames.NueDeck.Scripts.Managers
             UIManager.CombatCanvas.gameObject.SetActive(true);
             UIManager.InformationCanvas.gameObject.SetActive(true);
             CurrentCombatStateType = CombatStateType.AllyTurn;
+            if (UIManager && UIManager.CombatCanvas)
+                UIManager.CombatCanvas.SetPileTexts();
+        }
+
+        public void TriggerFirstCardPlayed(RelicEffectParameters parameters)
+        {
+            if (_hasPlayedFirstCardThisTurn)
+                return;
+
+            _hasPlayedFirstCardThisTurn = true;
+            RelicEffectProcessor.Trigger(RelicCondition.OnFirstCardPlayed, parameters);
+        }
+
+        public void TriggerFirstDamageDealt(RelicEffectParameters parameters)
+        {
+            if (_hasDealtDamageThisTurn)
+                return;
+
+            _hasDealtDamageThisTurn = true;
+            RelicEffectProcessor.Trigger(RelicCondition.OnFirstDamageDealt, parameters);
+        }
+
+        public void TriggerFirstDamageTaken(RelicEffectParameters parameters)
+        {
+            if (_hasTakenDamageThisTurn)
+                return;
+
+            _hasTakenDamageThisTurn = true;
+            RelicEffectProcessor.Trigger(RelicCondition.OnFirstDamageTaken, parameters);
         }
         
         private void ExecuteCombatState(CombatStateType targetStateType)
@@ -109,6 +143,9 @@ namespace NueGames.NueDeck.Scripts.Managers
                 case CombatStateType.PrepareCombat:
                     break;
                 case CombatStateType.AllyTurn:
+                    _hasPlayedFirstCardThisTurn = false;
+                    _hasDealtDamageThisTurn = false;
+                    _hasTakenDamageThisTurn = false;
                     OnAllyTurnStarted?.Invoke();
                     
                     if (CurrentMainAlly.CharacterStats.IsStunned)
@@ -128,7 +165,8 @@ namespace NueGames.NueDeck.Scripts.Managers
                         UIManager.CombatCanvas.SetPileTexts();
                     break;
                 case CombatStateType.EnemyTurn:
-
+                    _hasDealtDamageThisTurn = false;
+                    _hasTakenDamageThisTurn = false;
                     OnEnemyTurnStarted?.Invoke();
                     
                     CollectionManager.DiscardHand();
@@ -138,7 +176,7 @@ namespace NueGames.NueDeck.Scripts.Managers
                     GameManager.PersistentGameplayData.CanSelectCards = false;
                     break;
                 case CombatStateType.EndCombat:
-                    
+                    ReduceNextCardCostAction.Reset();
                     GameManager.PersistentGameplayData.CanSelectCards = false;
                     
                     break;

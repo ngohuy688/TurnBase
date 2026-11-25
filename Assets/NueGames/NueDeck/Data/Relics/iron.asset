@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4447ce609cb4ea44e8628f96e7cced05, type: 3}
+  m_Name: iron
+  m_EditorClassIdentifier: 
+  relicId: iron_armor
+  relicName: "Iron Armor"
+  relicSprite: {fileID: 2108480542600776156, guid: 1fb0c0cb02c616d49815abb7a9a0fc0f, type: 3}
+  relicDescription: "Gain 4 Block at the start of each turn. Reflect 1 damage when hit."
+  effectType: 0
+  conditionType: 0
+  targetType: 0
+  effectValue: 0
+  relicEffectDatas:
+  - effectType: 6
+    conditionType: 4
+    targetType: 3
+    effectValue: 4
+  - effectType: 8
+    conditionType: 9
+    targetType: 0
+    effectValue: 1
+  isUnique: 1

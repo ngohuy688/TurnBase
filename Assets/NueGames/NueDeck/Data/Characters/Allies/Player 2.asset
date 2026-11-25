@@ -15,7 +15,7 @@ MonoBehaviour:
   characterID: player_example
   characterName: Magalan
   characterDescription: Player Description
-  maxHealth: 100
+  maxHealth: 35
   portrait: {fileID: 21300000, guid: 49955a498f5dca34d9c38a83cdb2ade2, type: 3}
   startingRelics:
   - {fileID: 11400000, guid: 4fe6217aaec442ec8931d38ee2c1f091, type: 2}

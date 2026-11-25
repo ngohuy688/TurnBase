@@ -32,3 +32,18 @@ MonoBehaviour:
   - iconStatus: 128
     iconSprite: {fileID: 8414397559482299720, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
     specialKeywords: 06000000
+  - iconStatus: 32
+    iconSprite: {fileID: 21300000, guid: 0a60e9c983046544091ff0f23327da5a, type: 3}
+    specialKeywords: 07000000
+  - iconStatus: 64
+    iconSprite: {fileID: 21300000, guid: 066c0b04be98cd348abb79add91d42bf, type: 3}
+    specialKeywords: 08000000
+  - iconStatus: 256
+    iconSprite: {fileID: 8414397559482299720, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
+    specialKeywords: 09000000
+  - iconStatus: 512
+    iconSprite: {fileID: -1915271831, guid: 882aa6fe10621a04bb4b2a92ab6ee961, type: 3}
+    specialKeywords: 0a000000
+  - iconStatus: 1024
+    iconSprite: {fileID: -581353375, guid: 882aa6fe10621a04bb4b2a92ab6ee961, type: 3}
+    specialKeywords: 0b000000

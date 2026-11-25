@@ -15,7 +15,10 @@ namespace NueGames.NueDeck.Scripts.Enums
         OnDamageDealt,
         OnBlockGained,
         OnHealthRestored,
-        OnCoinGained
+        OnCoinGained,
+        OnFirstCardPlayed,
+        OnFirstDamageDealt,
+        OnFirstDamageTaken
     }
 }
 

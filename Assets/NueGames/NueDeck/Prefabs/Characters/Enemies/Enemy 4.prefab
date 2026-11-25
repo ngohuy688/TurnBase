@@ -11,10 +11,10 @@ PrefabInstance:
     - target: {fileID: 243822687015991123, guid: c973aeb67e007d54c97fd480d7f50773, type: 3}
       propertyPath: enemyCharacterData
       value: 
-      objectReference: {fileID: 11400000, guid: 2a3e3cac54ff7a84a81dc5f60d34fb2b, type: 2}
+      objectReference: {fileID: 11400000, guid: 293af8244b51fa144b32ec6647e1d75c, type: 2}
     - target: {fileID: 243822687015991148, guid: c973aeb67e007d54c97fd480d7f50773, type: 3}
       propertyPath: m_Name
-      value: Enemy 3
+      value: Enemy 4
       objectReference: {fileID: 0}
     - target: {fileID: 243822687015991149, guid: c973aeb67e007d54c97fd480d7f50773, type: 3}
       propertyPath: m_LocalPosition.x

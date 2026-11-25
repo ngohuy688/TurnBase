@@ -18,11 +18,10 @@ namespace NueGames.NueDeck.Scripts.Card.CardActions
             var selfCharacter = actionParameters.SelfCharacter;
             var value = Mathf.Max(0, actionParameters.Value + selfCharacter.CharacterStats.StrengthModifier);
 
-            if (selfCharacter.CharacterStats.StatusDict[StatusType.Weak].StatusValue > 0)
-                value = Mathf.RoundToInt(value * 0.75f);
-
             if (targetCharacter.CharacterStats.StatusDict[StatusType.Vulnerable].StatusValue > 0)
                 value = Mathf.RoundToInt(value * 1.5f);
+
+            value = selfCharacter.CharacterStats.ModifyOutgoingDamage(value);
 
             if (selfCharacter is AllyBase)
             {
@@ -33,20 +32,24 @@ namespace NueGames.NueDeck.Scripts.Card.CardActions
                     TargetCharacter = targetCharacter,
                     CardData = actionParameters.CardData
                 };
+                CombatManager.Instance?.TriggerFirstDamageDealt(damageParameters);
                 RelicEffectProcessor.Trigger(RelicCondition.OnDamageDealt, damageParameters);
                 value = damageParameters.Value;
             }
 
-            targetCharacter.CharacterStats.Damage(Mathf.RoundToInt(value));
+            targetCharacter.CharacterStats.Damage(Mathf.RoundToInt(value), false, selfCharacter);
             if (targetCharacter is AllyBase)
-                RelicEffectProcessor.Trigger(RelicCondition.OnDamageTaken,
-                    new RelicEffectParameters
-                    {
-                        Value = value,
-                        SourceCharacter = selfCharacter,
-                        TargetCharacter = targetCharacter,
-                        CardData = actionParameters.CardData
-                    });
+            {
+                var damageParameters = new RelicEffectParameters
+                {
+                    Value = value,
+                    SourceCharacter = selfCharacter,
+                    TargetCharacter = targetCharacter,
+                    CardData = actionParameters.CardData
+                };
+                CombatManager.Instance?.TriggerFirstDamageTaken(damageParameters);
+                RelicEffectProcessor.Trigger(RelicCondition.OnDamageTaken, damageParameters);
+            }
 
             if (FxManager != null)
             {

@@ -11,6 +11,8 @@ namespace NueGames.NueDeck.Scripts.NueExtentions
                 case StatusType.Block:
                 case StatusType.Strength:
                 case StatusType.Dexterity:
+                case StatusType.DamageUp:
+                case StatusType.Thorns:
                     return StatusPolarity.Beneficial;
 
                 case StatusType.Poison:
@@ -18,6 +20,7 @@ namespace NueGames.NueDeck.Scripts.NueExtentions
                 case StatusType.Weak:
                 case StatusType.Vulnerable:
                 case StatusType.StrengthDown:
+                case StatusType.DamageDown:
                     return StatusPolarity.Harmful;
 
                 case StatusType.None:

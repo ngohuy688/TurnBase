@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NueGames.NueDeck.Scripts.Characters;
+using NueGames.NueDeck.Scripts.Card.CardActions;
 using NueGames.NueDeck.Scripts.Data.Collection;
 using NueGames.NueDeck.Scripts.Enums;
 using NueGames.NueDeck.Scripts.Managers;
@@ -62,7 +63,7 @@ namespace NueGames.NueDeck.Scripts.Card
             IsPlayable = isPlayable;
             nameTextField.text = CardData.CardName;
             descTextField.text = CardData.MyDescription;
-            manaTextField.text = CardData.ManaCost.ToString();
+            manaTextField.text = ReduceNextCardCostAction.GetCost(CardData.ManaCost).ToString();
             cardImage.sprite = CardData.CardSprite;
             foreach (var rarityRoot in RarityRootList)
                 rarityRoot.gameObject.SetActive(rarityRoot.Rarity == CardData.Rarity);
@@ -85,6 +86,13 @@ namespace NueGames.NueDeck.Scripts.Card
             foreach (var playerAction in CardData.CardActionDataList)
             {
                 yield return new WaitForSeconds(playerAction.ActionDelay);
+                if (playerAction.CardActionType == CardActionType.ReduceNextCardCost)
+                {
+                    CardActionProcessor.GetAction(playerAction.CardActionType)
+                        .DoAction(new CardActionParameters(playerAction.ActionValue, null, self, CardData, this));
+                    continue;
+                }
+
                 var targetList = DetermineTargets(targetCharacter, allEnemies, allAllies, playerAction);
 
                 if (targetList.Count > 0 &&
@@ -98,13 +106,15 @@ namespace NueGames.NueDeck.Scripts.Card
                         .DoAction(new CardActionParameters(playerAction.ActionValue,
                             target,self,CardData,this));
             }
-            RelicEffectProcessor.Trigger(RelicCondition.OnCardPlayed,
-                new RelicEffectParameters
-                {
-                    SourceCharacter = self,
-                    TargetCharacter = targetCharacter,
-                    CardData = CardData
-                });
+            var relicParameters = new RelicEffectParameters
+            {
+                SourceCharacter = self,
+                TargetCharacter = targetCharacter,
+                CardData = CardData
+            };
+            if (CombatManager)
+                CombatManager.TriggerFirstCardPlayed(relicParameters);
+            RelicEffectProcessor.Trigger(RelicCondition.OnCardPlayed, relicParameters);
             CollectionManager.OnCardPlayed(this);
         }
 
@@ -164,7 +174,8 @@ namespace NueGames.NueDeck.Scripts.Card
         protected virtual void SpendMana(int value)
         {
             if (!IsPlayable) return;
-                GameManager.PersistentGameplayData.CurrentMana -= value;
+            GameManager.PersistentGameplayData.CurrentMana -= ReduceNextCardCostAction.GetCost(value);
+            ReduceNextCardCostAction.ConsumeReduction();
         }
         
         public virtual void SetInactiveMaterialState(bool isInactive) 
@@ -181,7 +192,7 @@ namespace NueGames.NueDeck.Scripts.Card
             CardData.UpdateDescription();
             nameTextField.text = CardData.CardName;
             descTextField.text = CardData.MyDescription;
-            manaTextField.text = CardData.ManaCost.ToString();
+            manaTextField.text = ReduceNextCardCostAction.GetCost(CardData.ManaCost).ToString();
         }
         
         #endregion

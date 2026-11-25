@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebd89b4e554fd98a6e17c355a01d01, type: 3}
+  m_Name: SubEvent 5 - The Hermits Tent
+  m_EditorClassIdentifier: 
+  eventTitle: The Hermit's Tent
+  description: Inside the tent, an elderly hermit stirs awake. He gazes upon your
+    battle scars with sympathy and offers aid to weary travelers.
+  choices:
+  - title: '[Seek Remedy] Herbal treatment from the hermit'
+    description: Heal 25 HP for all allies.
+    effects:
+    - effectType: 1
+      amount: 25
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Accept Offering] A purse of traveler''s silver'
+    description: Gain 45 Gold.
+    effects:
+    - effectType: 0
+      amount: 45
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Express Thanks] Part ways with a polite bow'
+    description: Continue your journey.
+    effects: []
+    nextEventData: {fileID: 0}

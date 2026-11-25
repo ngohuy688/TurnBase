@@ -15,8 +15,7 @@ MonoBehaviour:
   characterID: player_example
   characterName: Amiya
   characterDescription: Player Description
-  maxHealth: 150
+  maxHealth: 40
   portrait: {fileID: 21300000, guid: 901fd8569d59fc34caf3ed07aa610d7a, type: 3}
   startingRelics:
-  - {fileID: 11400000, guid: 12c61d5583035ef4bb74901ac9620e7d, type: 2}
-  - {fileID: 11400000, guid: ac85a60b51951b241b8b5d37121e859c, type: 2}
+  - {fileID: 11400000, guid: 80643f2152e00b449a1cf86a8bf427d7, type: 2}

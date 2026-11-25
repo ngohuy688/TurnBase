@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 3_block_basic
   cardName: Basic block
   manaCost: 1
-  cardSprite: {fileID: -1513487178384027574, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
+  cardSprite: {fileID: -1075609040, guid: 882aa6fe10621a04bb4b2a92ab6ee961, type: 3}
   rarity: 0
   usableWithoutTarget: 1
   exhaustAfterPlay: 0

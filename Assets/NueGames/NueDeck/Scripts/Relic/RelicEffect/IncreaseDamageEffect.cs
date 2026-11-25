@@ -1,4 +1,5 @@
 using NueGames.NueDeck.Scripts.Enums;
+using UnityEngine;
 
 namespace NueGames.NueDeck.Scripts.Relic.RelicEffect
 {
@@ -8,7 +9,8 @@ namespace NueGames.NueDeck.Scripts.Relic.RelicEffect
 
         public override void ApplyEffect(RelicEffectParameters parameters)
         {
-            parameters.Value += EffectValue(parameters);
+            var multiplier = 1f + EffectValue(parameters) / 100f;
+            parameters.Value = Mathf.Max(0, parameters.Value * multiplier);
         }
     }
 }

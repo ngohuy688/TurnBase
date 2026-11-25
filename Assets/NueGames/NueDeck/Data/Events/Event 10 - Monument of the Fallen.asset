@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebd89b4e554fd98a6e17c355a01d01, type: 3}
+  m_Name: Event 10 - Monument of the Fallen
+  m_EditorClassIdentifier: 
+  eventTitle: Monument of the Fallen
+  description: A monumental stone obelisk etched with the names of fallen warriors
+    who stood against the encroaching darkness.
+  choices:
+  - title: '[Pay Respects] Honor the fallen with a silent prayer'
+    description: Renewed resolve soothes wounds. Heal 16 HP for all allies.
+    effects:
+    - effectType: 1
+      amount: 16
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Accept Offerings] Take tribute left by pilgrims'
+    description: Receive 30 Gold to aid your quest.
+    effects:
+    - effectType: 0
+      amount: 30
+      cardData: {fileID: 0}
+      relicData: {fileID: 0}
+    nextEventData: {fileID: 0}
+  - title: '[Carve Oath] Swear an oath of vengeance'
+    description: Steeled for the battles ahead, march forward.
+    effects: []
+    nextEventData: {fileID: 0}

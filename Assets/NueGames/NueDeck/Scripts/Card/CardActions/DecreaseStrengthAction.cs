@@ -16,7 +16,8 @@ namespace NueGames.NueDeck.Scripts.Card.CardActions
 
             if (!target || target.CharacterStats.IsDeath) return;
 
-            var amount = Mathf.RoundToInt(-actionParameters.Value);
+            var amount = Mathf.Abs(Mathf.RoundToInt(actionParameters.Value));
+            if (amount <= 0) return;
 
             target.CharacterStats.ApplyStatus(StatusType.StrengthDown, amount);
 

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Mana
   m_EditorClassIdentifier: 
   relicId: gain_mana
-  relicName: ManaBar
-  relicSprite: {fileID: -6598036126873212134, guid: a707003c96586cc41b22ae32a9cdb636, type: 3}
-  relicDescription: Gain 1 mana on start
+  relicName: "Mana Potion I"
+  relicSprite: {fileID: -276744983, guid: 8dcecde7f3b8a4644b2a06ca119874db, type: 3}
+  relicDescription: "Gain 2 mana at the start of combat."
   effectType: 0
   conditionType: 0
   targetType: 0
   effectValue: 0
   relicEffectDatas:
   - effectType: 2
-    conditionType: 4
+    conditionType: 2
     targetType: 3
-    effectValue: 1
+    effectValue: 2
   isUnique: 1

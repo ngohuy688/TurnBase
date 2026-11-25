@@ -16,13 +16,30 @@ MonoBehaviour:
   - specialKeyword: 0
     contentText: Block damages
   - specialKeyword: 1
-    contentText: Increase your attack damage
+    headerText: Increase Attack Damage
+    contentText: Increase your attack damage by this many points. Stacks do not decay.
   - specialKeyword: 4
-    contentText: Increase your block amount
+    headerText: Increase Block
+    contentText: Each stack increases block gained by 50%. Lose 1 stack each turn
   - specialKeyword: 2
-    contentText: Damage per round. Ignores <color=blue>block</color>.
+    contentText: At the start of the target's turn, deal damage equal to Poison stacks. Ignores <color=blue>block</color>, then loses 1 stack.
   - specialKeyword: 3
     contentText: After using <color=yellow>Exhaust</color>, remove it from your deck
       for this combat
   - specialKeyword: 5
-    contentText: Can not use any action
+    contentText: Skip the next turn. Lose 1 stack each turn.
+  - specialKeyword: 6
+    headerText: Decrease Attack Damage
+    contentText: Decrease attack damage by this many points. Lose 1 stack after one full turn.
+  - specialKeyword: 7
+    contentText: Decrease attack damage by this many points. Stacks do not decay
+  - specialKeyword: 8
+    contentText: Attacks against this character deal 50% more damage. Lose 1 stack each turn.
+  - specialKeyword: 9
+    headerText: Increase Damage
+    contentText: Each stack increases damage dealt by 50%. Lose 1 stack each turn
+  - specialKeyword: 10
+    headerText: Decrease Damage
+    contentText: Each stack decreases damage dealt by 50%. Lose 1 stack each turn
+  - specialKeyword: 11
+    contentText: Reflect damage equal to this stack count when hit. Removed at the start of the next turn.

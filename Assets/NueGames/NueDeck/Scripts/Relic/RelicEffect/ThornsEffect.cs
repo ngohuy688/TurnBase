@@ -9,14 +9,11 @@ namespace NueGames.NueDeck.Scripts.Relic.RelicEffect
 
         public override void ApplyEffect(RelicEffectParameters parameters)
         {
-            var percent = EffectValue(parameters);
-            if (percent <= 0) return;
+            var reflectedDamage = EffectValue(parameters);
+            if (reflectedDamage <= 0) return;
 
             var attacker = parameters.SourceCharacter;
             if (!attacker || attacker.CharacterStats.IsDeath) return;
-
-            var damageTaken = parameters.Value;
-            var reflectedDamage = Mathf.Max(1, Mathf.RoundToInt(damageTaken * (percent / 100f)));
 
             attacker.CharacterStats.Damage(reflectedDamage);
 

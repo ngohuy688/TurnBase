@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4447ce609cb4ea44e8628f96e7cced05, type: 3}
+  m_Name: fangps
+  m_EditorClassIdentifier: 
+  relicId: poison_fang
+  relicName: "Poison Fang"
+  relicSprite: {fileID: 16450272, guid: 8dcecde7f3b8a4644b2a06ca119874db, type: 3}
+  relicDescription: "Whenever you deal damage to an enemy, apply 1 Poison to it."
+  effectType: 0
+  conditionType: 0
+  targetType: 0
+  effectValue: 0
+  relicEffectDatas:
+  - effectType: 14
+    conditionType: 10
+    targetType: 0
+    effectValue: 1
+  isUnique: 1

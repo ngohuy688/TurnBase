@@ -104,14 +104,12 @@ namespace NueGames.NueDeck.Scripts.UI.Reward
                 Debug.LogWarning("No unowned relics are available for this reward.", rewardContainerData);
                 return;
             }
-            foreach (var relic in relicChoices)
-            {
-                var clone = Instantiate(rewardContainerPrefab, rewardRoot);
-                _currentRewardsList.Add(clone);
-                _relicChoiceList.Add(clone);
-                clone.BuildReward(relic.RelicSprite, $"{relic.RelicName}\n{relic.RelicDescription}");
-                clone.RewardButton.onClick.AddListener(() => GetRelicReward(relic));
-            }
+            var relic = relicChoices.RandomItem();
+            var clone = Instantiate(rewardContainerPrefab, rewardRoot);
+            _currentRewardsList.Add(clone);
+            _relicChoiceList.Add(clone);
+            clone.BuildReward(relic.RelicSprite, $"{relic.RelicName}\n{relic.RelicDescription}");
+            clone.RewardButton.onClick.AddListener(() => GetRelicReward(relic));
         }
 
         private void GetRelicReward(RelicData relicData)

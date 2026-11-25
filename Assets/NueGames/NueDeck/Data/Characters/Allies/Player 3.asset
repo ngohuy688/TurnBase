@@ -15,7 +15,7 @@ MonoBehaviour:
   characterID: player_example
   characterName: Fiameta
   characterDescription: Player Description
-  maxHealth: 100
+  maxHealth: 50
   portrait: {fileID: 21300000, guid: 17ba3ac1122d91c4a8d8ff427a402e20, type: 3}
   startingRelics:
-  - {fileID: 11400000, guid: 4fe6217aaec442ec8931d38ee2c1f091, type: 2}
+  - {fileID: 11400000, guid: 12c61d5583035ef4bb74901ac9620e7d, type: 2}

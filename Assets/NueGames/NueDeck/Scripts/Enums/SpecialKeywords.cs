@@ -8,6 +8,11 @@
         Exhaust,
         Dexterity,
         Stun,
-        StrengthDown
+        StrengthDown,
+        Weak,
+        Vulnerable,
+        DamageUp,
+        DamageDown,
+        Thorns,
     }
 }

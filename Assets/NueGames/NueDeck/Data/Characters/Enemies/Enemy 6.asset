@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2612027158f847538279f7d8f10dff91, type: 3}
+  m_Name: Enemy 6
+  m_EditorClassIdentifier: 
+  characterID: enemy_6
+  characterName: Enemy 6
+  characterDescription: Enemy Description
+  maxHealth: 120
+  enemyPrefab: {fileID: 6003445405145122851, guid: 82c962eefdeea7041baa15d8571cd3df, type: 3}
+  followAbilityPattern: 1
+  enemyAbilityList:
+  - name: Poison
+    intention: {fileID: 11400000, guid: e7deaaa3f01f8f54ab8c29a0ce3c8f31, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 2
+      minActionValue: 4
+      maxActionValue: 5
+  - name: Attack Single
+    intention: {fileID: 11400000, guid: 2af475f5121b73d4c99b67551230aa48, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      minActionValue: 8
+      maxActionValue: 10
+  - name: Block
+    intention: {fileID: 11400000, guid: b0b1e7f2f78bb444eb1666e4accf22ee, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 3
+      minActionValue: 12
+      maxActionValue: 16
+  - name: Heal
+    intention: {fileID: 11400000, guid: d8b91adf93b4e21419f64f9a68fc3c70, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 1
+      minActionValue: 8
+      maxActionValue: 10
+  - name: Attack Single
+    intention: {fileID: 11400000, guid: 2af475f5121b73d4c99b67551230aa48, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      minActionValue: 12
+      maxActionValue: 15
+  - name: Block
+    intention: {fileID: 11400000, guid: b0b1e7f2f78bb444eb1666e4accf22ee, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 3
+      minActionValue: 15
+      maxActionValue: 20
+  - name: Attack Single
+    intention: {fileID: 11400000, guid: 2af475f5121b73d4c99b67551230aa48, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      minActionValue: 16
+      maxActionValue: 20

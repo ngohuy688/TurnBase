@@ -1,42 +1,99 @@
 namespace NueGames.NueDeck.Scripts.Enums
 {
+    /// <summary>
+    /// Loại effect được chọn trong RelicEffectData. ConditionType quyết định lúc chạy,
+    /// TargetType quyết định mục tiêu nếu effect có xử lý mục tiêu.
+    /// </summary>
     public enum RelicEffectType
     {
-        IncreaseDamage,
-        IncreaseMaxHealth,
-        GainMana,
+        // Tăng sát thương hiện tại theo phần trăm: Value 20 biến 10 damage thành 12.
+        // Thường cấu hình với OnDamageDealt; khác IncreaseAttackDamage ở chỗ đây là %.
+        IncreaseDamage = 0,
 
-        //bổ sung
-        IncreaseAttackDamage,    // Tăng sát thương của các lá bài tấn công.
-        // IncreaseDamageToBoss,    // Tăng sát thương khi chiến đấu với Boss(delay).
-        FirstAttackBonus,        // Đòn tấn công đầu tiên mỗi trận gây thêm sát thương = value.
+        // Tăng MaxHealth và CurrentHealth của nhân vật chính cùng một lượng điểm cố định.
+        // Có thể cấp trong combat hoặc cập nhật dữ liệu máu lưu ngoài combat.
+        IncreaseMaxHealth = 1,
 
-        Heal,       // Hồi một lượng máu.
-        GainBlock,               // Nhận một lượng Block (giáp) = value.
-        IncreaseBlock,           // Tăng lượng Block nhận được từ mọi nguồn, % tăng thêm = value.
-        Thorns,                  // Phản lại sát thương khi bị kẻ địch tấn công, % phản sát thương = value.
+        // Cộng Value mana vào mana hiện tại; không đổi giới hạn MaxMana.
+        GainMana = 2,
 
-        IncreaseMaxMana,         // Tăng giới hạn Mana tối đa = value.
-        ReduceCardCost,          // Giảm cost của lá bài tiếp theo = value, hết hiệu lực sau khi sử dụng.
-        ReduceAllCardCost,       // Giảm cost của tất cả bài, value = số cost giảm.
+        // Cộng Value điểm sát thương cố định vào parameters.Value của event hiện tại.
+        // Thường dùng với OnDamageDealt; khác IncreaseDamage ở chỗ đây không phải %.
+        IncreaseAttackDamage = 3,
 
-        DrawCard,                // Rút bài, số bài = value.
-        IncreaseHandSize,        // Tăng giới hạn số lá bài trên tay = value.
+        // Hồi Value máu cho mục tiêu được cấu hình. Ngoài combat, hồi cho ally đầu tiên
+        // trong party đã lưu; máu hồi không vượt MaxHealth.
+        Heal = 5,
 
-        ApplyPoison,             // Gây Poison lên kẻ địch với số damage = value.
-        ApplyWeak,               // Gây Weak lên kẻ địch với số turn = value.
-        ApplyVulnerable,         // Gây Vulnerable lên kẻ địch với số turn = value.
-        IncreaseDebuffDuration,  // Tăng thời gian tồn tại của hiệu ứng bất lợi với số turn = value.
+        // Cấp Value Block cố định cho mục tiêu; mặc định là Ally nếu TargetType không hợp lệ.
+        GainBlock = 6,
 
-        GainArtifact,       // Nhận Artifact ngẫu nhiên số lượng = value;
-        GainStrength,            // Nhận Strength trong trận với số turn = value.
-        PreventDamage,      // Chặn hoàn toàn sát thương nhận vào trong 1 hiệp, số lần chặn = value.
+        // Tăng Block theo phần trăm của parameters.Value. Value 25 nghĩa là +25%;
+        // bonus được cộng vào target và tối thiểu là 1 nếu phần trăm dương.
+        IncreaseBlock = 7,
 
-        gainGold,            // Nhận thêm vàng , sô lượng = value.
-        ShopDiscount,    // Giảm giá vật phẩm trong Shop, % giảm = value.
-        // IncreaseRareCardChance,  // Tăng tỷ lệ xuất hiện bài hiếm (delay).
+        // Gây lượng damage cố định bằng Value lên source. Thường dùng với OnDamageTaken.
+        Thorns = 8,
 
-        CopyLastCard,            // kích hoạt lại hiệu ứng lá bài kế tiếp sử dụng số lần kích hoạt lại = value.
-        TriggerEffectTwice       // Kích hoạt lại hiệu ứng của Relic loại "triger on enquipted" hiện có trong persistant số lần kích hoạt lại = value.
+        // Tăng cả MaxMana và CurrentMana thêm Value, trong hoặc ngoài combat.
+        IncreaseMaxMana = 9,
+
+        // Lưu Value làm mức giảm mana cost cho lá bài kế tiếp. Có hàm ConsumeReduction
+        // để xóa mức giảm, nhưng hiện chưa có call site dùng hàm đó trong gameplay.
+        ReduceCardCost = 10,
+
+        // Passive helper cộng các Value để giảm cost của mọi lá bài. Cần được gọi khi
+        // tính cost; hiện chưa được nối vào luồng tính cost của card.
+        ReduceAllCardCost = 11,
+
+        // Rút ngay Value lá bài từ CollectionManager.
+        DrawCard = 12,
+
+        // Passive helper cộng Value để tăng giới hạn bài trên tay; CollectionManager
+        // dùng bonus này khi tính max hand size.
+        IncreaseHandSize = 13,
+
+        // Cộng Value stack Poison cho các mục tiêu; mặc định là tất cả Enemy.
+        // Poison gây damage theo số stack rồi giảm 1 stack mỗi lượt.
+        ApplyPoison = 14,
+
+        // Cộng Value stack Weak cho mục tiêu; mặc định là tất cả Enemy.
+        // Weak giảm sát thương tấn công theo số stack và không tự giảm mỗi lượt.
+        ApplyWeak = 15,
+
+        // Cộng Value stack Vulnerable cho mục tiêu; mặc định là tất cả Enemy.
+        // Khi còn Vulnerable, mỗi đòn đánh nhận vào tăng 50%; stack giảm 1 mỗi lượt.
+        ApplyVulnerable = 16,
+
+        // Passive helper cộng các Value thành bonus thời lượng debuff. Hiện chưa có
+        // luồng áp dụng debuff nào gọi helper này.
+        IncreaseDebuffDuration = 17,
+
+        // Hiện chỉ kiểm tra dữ liệu và ghi log; chưa chọn hoặc cấp relic ngẫu nhiên.
+        GainArtifact = 18,
+
+        // Cộng Value stack Strength cho mục tiêu; mặc định là Ally.
+        // Mỗi stack cộng 1 damage phẳng vào đòn đánh và không tự giảm mỗi lượt.
+        GainStrength = 19,
+
+        // Dùng Value làm số lần chặn trong encounter. Hiện effect chỉ đặt damage event
+        // về 0, nhưng OnDamageTaken được gọi sau khi damage đã trừ máu nên chưa chặn
+        // được damage thực tế.
+        PreventDamage = 20,
+
+        // Cộng Value vàng vào CurrentGold và cập nhật UI vàng.
+        gainGold = 21,
+
+        // Passive helper cộng các Value thành % giảm giá. GetDiscountedCost làm tròn
+        // cost và chặn không cho xuống dưới 0; cần được gọi khi tạo giá shop.
+        ShopDiscount = 22,
+
+        // Lưu Value vào RepeatCount. Bản thân effect chưa phát lại card; cần consumer
+        // đọc và gọi ConsumeRepeat để thực hiện số lần lặp.
+        CopyLastCard = 23,
+
+        // Lặp Value lần qua các relic đang sở hữu, gọi lại condition OnRelicEquipped
+        // của chúng. Bỏ qua chính relic chứa effect này.
+        TriggerEffectTwice = 24
     }
 }
