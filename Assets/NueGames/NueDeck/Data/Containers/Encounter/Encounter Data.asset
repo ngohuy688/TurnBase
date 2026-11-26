@@ -41,6 +41,7 @@ MonoBehaviour:
     - nodeId: s1_0_0
       displayName: Forest Entrance
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -52,28 +53,30 @@ MonoBehaviour:
     - nodeId: s1_1_0
       displayName: Mysterious Path
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
       roomNumber: 1
-      position: {x: 0.4, y: 0.375}
+      position: {x: 0.4, y: 0.5}
       nextNodeIds:
       - s1_2_0
       - s1_2_1
     - nodeId: s1_1_1
       displayName: Goblin Ambush
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 1
       roomNumber: 1
-      position: {x: 0.4, y: 0.5}
+      position: {x: 0.4, y: 0.625}
       nextNodeIds:
-      - s1_2_1
       - s1_2_2
     - nodeId: s1_2_0
       displayName: Dense Thicket
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 2
@@ -84,17 +87,18 @@ MonoBehaviour:
     - nodeId: s1_2_1
       displayName: Woodland Market
       nodeType: 2
+      isFinal: 0
       shopContainerData: {fileID: 11400000, guid: ba1d27464ca94104aec927073d0435e1, type: 2}
       eventData: {fileID: 0}
       encounterIndex: 0
       roomNumber: 2
       position: {x: 0.6, y: 0.5}
       nextNodeIds:
-      - s1_3_0
       - s1_3_1
     - nodeId: s1_2_2
       displayName: Old Ruins
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -105,6 +109,7 @@ MonoBehaviour:
     - nodeId: s1_3_0
       displayName: Wolf Den
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 3
@@ -115,6 +120,7 @@ MonoBehaviour:
     - nodeId: s1_3_1
       displayName: Ancient Shrine
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -125,11 +131,23 @@ MonoBehaviour:
     - nodeId: s1_4_0
       displayName: Forest Guardian
       nodeType: 1
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
       roomNumber: 4
       position: {x: 1, y: 0.5}
+      nextNodeIds:
+      - node-10
+    - nodeId: node-10
+      displayName: Node 10
+      nodeType: 2
+      isFinal: 1
+      shopContainerData: {fileID: 11400000, guid: ba1d27464ca94104aec927073d0435e1, type: 2}
+      eventData: {fileID: 0}
+      encounterIndex: 0
+      roomNumber: 10
+      position: {x: 1.2, y: 0.5}
       nextNodeIds: []
     eventPool:
     - {fileID: 11400000, guid: e0000000000000000000000000000001, type: 2}
@@ -174,6 +192,7 @@ MonoBehaviour:
     - nodeId: s2_0_0
       displayName: Dungeon Gate
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -185,6 +204,7 @@ MonoBehaviour:
     - nodeId: s2_1_0
       displayName: Dusty Corridor
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -196,6 +216,7 @@ MonoBehaviour:
     - nodeId: s2_1_1
       displayName: Guard Patrol
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 1
@@ -207,6 +228,7 @@ MonoBehaviour:
     - nodeId: s2_2_0
       displayName: Armory Room
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 2
@@ -217,6 +239,7 @@ MonoBehaviour:
     - nodeId: s2_2_1
       displayName: Flooded Chamber
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -228,6 +251,7 @@ MonoBehaviour:
     - nodeId: s2_2_2
       displayName: Prison Cells
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -238,6 +262,7 @@ MonoBehaviour:
     - nodeId: s2_3_0
       displayName: Underground Bazaar
       nodeType: 2
+      isFinal: 0
       shopContainerData: {fileID: 11400000, guid: ba1d27464ca94104aec927073d0435e1, type: 2}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -249,6 +274,7 @@ MonoBehaviour:
     - nodeId: s2_3_1
       displayName: Torture Chamber
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 3
@@ -260,6 +286,7 @@ MonoBehaviour:
     - nodeId: s2_4_0
       displayName: Hidden Passage
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -270,6 +297,7 @@ MonoBehaviour:
     - nodeId: s2_4_1
       displayName: Central Hall
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 1
@@ -281,6 +309,7 @@ MonoBehaviour:
     - nodeId: s2_4_2
       displayName: Collapsed Tunnel
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -291,6 +320,7 @@ MonoBehaviour:
     - nodeId: s2_5_0
       displayName: Dark Laboratory
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 2
@@ -301,6 +331,7 @@ MonoBehaviour:
     - nodeId: s2_5_1
       displayName: Crypt Entrance
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 4
@@ -312,6 +343,7 @@ MonoBehaviour:
     - nodeId: s2_6_0
       displayName: Echoing Vault
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -322,6 +354,7 @@ MonoBehaviour:
     - nodeId: s2_6_1
       displayName: Warden Quarters
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 3
@@ -332,6 +365,7 @@ MonoBehaviour:
     - nodeId: s2_7_0
       displayName: Dungeon Overlord
       nodeType: 1
+      isFinal: 1
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -381,6 +415,7 @@ MonoBehaviour:
     - nodeId: s3_0_0
       displayName: Abyss Threshold
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -392,6 +427,7 @@ MonoBehaviour:
     - nodeId: s3_1_0
       displayName: Whispering Void
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -403,6 +439,7 @@ MonoBehaviour:
     - nodeId: s3_1_1
       displayName: Shadow Sentries
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 1
@@ -414,6 +451,7 @@ MonoBehaviour:
     - nodeId: s3_2_0
       displayName: Obsidian Bridge
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 2
@@ -424,6 +462,7 @@ MonoBehaviour:
     - nodeId: s3_2_1
       displayName: Ethereal Rift
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -435,6 +474,7 @@ MonoBehaviour:
     - nodeId: s3_2_2
       displayName: Corrupted Altar
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -445,6 +485,7 @@ MonoBehaviour:
     - nodeId: s3_3_0
       displayName: Demon Merchant
       nodeType: 2
+      isFinal: 0
       shopContainerData: {fileID: 11400000, guid: ba1d27464ca94104aec927073d0435e1, type: 2}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -456,6 +497,7 @@ MonoBehaviour:
     - nodeId: s3_3_1
       displayName: Cursed Sanctum
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -467,6 +509,7 @@ MonoBehaviour:
     - nodeId: s3_4_0
       displayName: Bone Gallery
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 3
@@ -477,6 +520,7 @@ MonoBehaviour:
     - nodeId: s3_4_1
       displayName: Nightmare Arena
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 1
@@ -488,6 +532,7 @@ MonoBehaviour:
     - nodeId: s3_4_2
       displayName: Lost Souls Chamber
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -498,6 +543,7 @@ MonoBehaviour:
     - nodeId: s3_5_0
       displayName: Abyssal Fountain
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -509,6 +555,7 @@ MonoBehaviour:
     - nodeId: s3_5_1
       displayName: Hellfire Pit
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 4
@@ -520,6 +567,7 @@ MonoBehaviour:
     - nodeId: s3_6_0
       displayName: Shattered Throne
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 2
@@ -530,6 +578,7 @@ MonoBehaviour:
     - nodeId: s3_6_1
       displayName: Void Nexus
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -541,6 +590,7 @@ MonoBehaviour:
     - nodeId: s3_6_2
       displayName: Infernal Forge
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 3
@@ -551,6 +601,7 @@ MonoBehaviour:
     - nodeId: s3_7_0
       displayName: Dread Gauntlet
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -561,6 +612,7 @@ MonoBehaviour:
     - nodeId: s3_7_1
       displayName: Spectral Library
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -572,6 +624,7 @@ MonoBehaviour:
     - nodeId: s3_8_0
       displayName: Final Omen
       nodeType: 5
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0
@@ -582,6 +635,7 @@ MonoBehaviour:
     - nodeId: s3_8_1
       displayName: Abyssal Wardens
       nodeType: 0
+      isFinal: 0
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 4
@@ -592,6 +646,7 @@ MonoBehaviour:
     - nodeId: s3_9_0
       displayName: Lord of the Abyss
       nodeType: 1
+      isFinal: 1
       shopContainerData: {fileID: 0}
       eventData: {fileID: 0}
       encounterIndex: 0

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMPro;
 using NueGames.NueDeck.Scripts.Enums;
 using NueGames.NueDeck.Scripts.Managers;
@@ -25,7 +25,7 @@ namespace NueGames.NueDeck.Scripts.UI
                 completedImage.gameObject.SetActive(false);
         }
 
-        public void Configure(string nodeName, EncounterMapNodeType nodeType, Action onSelected)
+        public void Configure(string nodeName, EncounterMapNodeType nodeType, bool isFinal, Action onSelected)
         {
             if (!button)
             {
@@ -40,25 +40,14 @@ namespace NueGames.NueDeck.Scripts.UI
                 return;
             }
 
-            label.text = nodeName;
-            isFinal = nodeType == EncounterMapNodeType.Boss;
+            this.isFinal = isFinal;
+            label.text = isFinal ? $"{nodeName} [Stage Exit]" : nodeName;
             var colors = button.colors;
-            if (isFinal)
-            {
-                colors.normalColor = new Color(1f, 0.78f, 0.42f, 1f);
-                colors.highlightedColor = new Color(1f, 0.88f, 0.62f, 1f);
-                colors.pressedColor = new Color(0.82f, 0.62f, 0.32f, 1f);
-                colors.selectedColor = colors.highlightedColor;
-            }
-            else if (nodeType == EncounterMapNodeType.Shop)
-            {
-                colors.normalColor = new Color(0.66f, 0.9f, 0.72f, 1f);
-                colors.highlightedColor = new Color(0.78f, 0.98f, 0.82f, 1f);
-                colors.pressedColor = new Color(0.43f, 0.72f, 0.52f, 1f);
-                colors.selectedColor = colors.highlightedColor;
-                colors.disabledColor = new Color(0.58f, 0.7f, 0.61f, 0.65f);
-            }
-
+            colors.normalColor = GetNodeColor(nodeType);
+            colors.highlightedColor = Color.Lerp(colors.normalColor, Color.white, 0.2f);
+            colors.pressedColor = Color.Lerp(colors.normalColor, Color.black, 0.2f);
+            colors.selectedColor = colors.highlightedColor;
+            colors.disabledColor = new Color(colors.normalColor.r, colors.normalColor.g, colors.normalColor.b, 0.55f);
             button.colors = colors;
             if (button.targetGraphic)
                 button.targetGraphic.color = Color.white;
@@ -69,6 +58,21 @@ namespace NueGames.NueDeck.Scripts.UI
 
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(OnButtonClicked);
+        }
+
+        private static Color GetNodeColor(EncounterMapNodeType nodeType)
+        {
+            switch (nodeType)
+            {
+                case EncounterMapNodeType.Encounter: return new Color(0.3f, 0.45f, 0.68f);
+                case EncounterMapNodeType.Boss: return new Color(0.72f, 0.24f, 0.22f);
+                case EncounterMapNodeType.Shop: return new Color(0.22f, 0.55f, 0.34f);
+                case EncounterMapNodeType.Campfire: return new Color(0.72f, 0.36f, 0.15f);
+                case EncounterMapNodeType.Treasure: return new Color(0.72f, 0.56f, 0.16f);
+                case EncounterMapNodeType.Event: return new Color(0.5f, 0.36f, 0.68f);
+                case EncounterMapNodeType.Unknown: return new Color(0.42f, 0.44f, 0.49f);
+                default: return Color.gray;
+            }
         }
 
         private void OnButtonClicked()

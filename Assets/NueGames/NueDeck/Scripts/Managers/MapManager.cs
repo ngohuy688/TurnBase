@@ -146,7 +146,11 @@ namespace NueGames.NueDeck.Scripts.Managers
                 }
 
                 var nodeId = mapNode.NodeId;
-                nodeButton.Configure(mapNode.DisplayName, mapNode.NodeType, () => SelectNode(mapNode, nodeId, sceneChanger));
+                nodeButton.Configure(
+                    mapNode.DisplayName,
+                    mapNode.NodeType,
+                    mapNode.IsFinal,
+                    () => SelectNode(mapNode, nodeId, sceneChanger));
                 var nodeRect = nodeButton.GetComponent<RectTransform>();
                 nodeRect.anchorMin = nodeRect.anchorMax = new Vector2(0.5f, 0.5f);
                 nodeRect.pivot = new Vector2(0.5f, 0.5f);

@@ -321,14 +321,21 @@ namespace NueGames.NueDeck.Editor
                 var nodeRect = GetNodeRect(
                     node.FindPropertyRelative("position").vector2Value, graphRect, horizontalBaseWidth, zoom);
                 var type = (EncounterMapNodeType)node.FindPropertyRelative("nodeType").enumValueIndex;
+                var isFinal = node.FindPropertyRelative("isFinal").boolValue;
                 var color = GetNodeColor(type);
                 if (i == _selectedNodeIndex)
                     color = Color.Lerp(color, Color.white, 0.28f);
 
                 EditorGUI.DrawRect(nodeRect, color);
                 GUI.Box(nodeRect, GUIContent.none, EditorStyles.helpBox);
+                if (isFinal)
+                    EditorGUI.DrawRect(new Rect(nodeRect.x, nodeRect.y, nodeRect.width, 4f), new Color(1f, 0.78f, 0.3f));
                 var name = node.FindPropertyRelative("displayName").stringValue;
-                GUI.Label(nodeRect, string.IsNullOrWhiteSpace(name) ? type.ToString() : name, labelStyle);
+                var labelRect = isFinal
+                    ? new Rect(nodeRect.x, nodeRect.y + 4f, nodeRect.width, nodeRect.height - 4f)
+                    : nodeRect;
+                var label = string.IsNullOrWhiteSpace(name) ? type.ToString() : name;
+                GUI.Label(labelRect, isFinal ? $"[STAGE EXIT] {label}" : label, labelStyle);
             }
         }
 
@@ -419,6 +426,9 @@ namespace NueGames.NueDeck.Editor
             EditorGUILayout.PropertyField(selectedNode.FindPropertyRelative("nodeId"));
             EditorGUILayout.PropertyField(selectedNode.FindPropertyRelative("displayName"));
             EditorGUILayout.PropertyField(selectedNode.FindPropertyRelative("nodeType"));
+            EditorGUILayout.PropertyField(
+                selectedNode.FindPropertyRelative("isFinal"),
+                new GUIContent("Stage Transition Node", "Completing this node advances to the next stage."));
             EditorGUILayout.PropertyField(selectedNode.FindPropertyRelative("roomNumber"));
             EditorGUILayout.PropertyField(selectedNode.FindPropertyRelative("position"));
             DrawTypeSpecificSettings(stage, selectedNode);
@@ -562,6 +572,7 @@ namespace NueGames.NueDeck.Editor
             node.FindPropertyRelative("nodeId").stringValue = nodeId;
             node.FindPropertyRelative("displayName").stringValue = $"Node {newIndex + 1}";
             node.FindPropertyRelative("nodeType").enumValueIndex = (int)EncounterMapNodeType.Encounter;
+            node.FindPropertyRelative("isFinal").boolValue = false;
             node.FindPropertyRelative("shopContainerData").objectReferenceValue = null;
             node.FindPropertyRelative("eventData").objectReferenceValue = null;
             node.FindPropertyRelative("encounterIndex").intValue = 0;
@@ -692,12 +703,14 @@ namespace NueGames.NueDeck.Editor
         {
             switch (type)
             {
-                case EncounterMapNodeType.Boss: return new Color(0.65f, 0.22f, 0.2f);
-                case EncounterMapNodeType.Encounter: return new Color(0.28f, 0.38f, 0.58f);
-                case EncounterMapNodeType.Shop: return new Color(0.28f, 0.48f, 0.34f);
-                case EncounterMapNodeType.Campfire: return new Color(0.65f, 0.36f, 0.2f);
-                case EncounterMapNodeType.Treasure: return new Color(0.66f, 0.53f, 0.2f);
-                default: return new Color(0.42f, 0.34f, 0.52f);
+                case EncounterMapNodeType.Encounter: return new Color(0.3f, 0.45f, 0.68f);
+                case EncounterMapNodeType.Boss: return new Color(0.72f, 0.24f, 0.22f);
+                case EncounterMapNodeType.Shop: return new Color(0.22f, 0.55f, 0.34f);
+                case EncounterMapNodeType.Campfire: return new Color(0.72f, 0.36f, 0.15f);
+                case EncounterMapNodeType.Treasure: return new Color(0.72f, 0.56f, 0.16f);
+                case EncounterMapNodeType.Event: return new Color(0.5f, 0.36f, 0.68f);
+                case EncounterMapNodeType.Unknown: return new Color(0.42f, 0.44f, 0.49f);
+                default: return Color.gray;
             }
         }
     }

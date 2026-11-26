@@ -256,6 +256,7 @@ namespace NueGames.NueDeck.Scripts.Data.Containers
         [SerializeField] private string nodeId;
         [SerializeField] private string displayName;
         [SerializeField] private EncounterMapNodeType nodeType;
+        [SerializeField] private bool isFinal;
         [SerializeField] private ShopContainerData shopContainerData;
         [SerializeField] private EventData eventData;
         [SerializeField] private int encounterIndex;
@@ -266,6 +267,7 @@ namespace NueGames.NueDeck.Scripts.Data.Containers
         public string NodeId => nodeId;
         public string DisplayName => displayName;
         public EncounterMapNodeType NodeType => nodeType;
+        public bool IsFinal => isFinal;
         public ShopContainerData ShopContainerData => shopContainerData;
         public EventData EventData => eventData;
         public int EncounterIndex => encounterIndex;

@@ -147,7 +147,7 @@ namespace NueGames.NueDeck.Scripts.Managers
 
             PersistentGameplayData.CurrentMapNodeId = node.NodeId;
             PersistentGameplayData.CurrentEncounterId = Mathf.Max(0, node.RoomNumber - 1);
-            PersistentGameplayData.IsFinalEncounter = node.NodeType == EncounterMapNodeType.Boss;
+            PersistentGameplayData.IsFinalEncounter = node.IsFinal;
             PersistentGameplayData.AvailableMapNodeIds.Clear();
             return true;
         }
@@ -170,6 +170,13 @@ namespace NueGames.NueDeck.Scripts.Managers
                 progress.AvailableMapNodeIds.AddRange(node.NextNodeIds);
             }
             SelectedMapEventData = null;
+
+            if (node.IsFinal &&
+                node.NodeType != EncounterMapNodeType.Encounter &&
+                node.NodeType != EncounterMapNodeType.Boss &&
+                EncounterData.TryGetNextStageId(progress.CurrentStageId, out _))
+                return TryAdvanceToNextStage();
+
             return true;
         }
 
